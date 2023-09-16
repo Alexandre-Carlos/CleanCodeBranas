@@ -1,7 +1,9 @@
 // @ts-nocheck
 import express from 'express';
+import { isOverNight, isSunday } from './RideCalculator';
 const app = express();
 app.use(express.json());
+
 
 app.post("/calculate_ride", function (req, res) {
     let price = 0;
@@ -11,20 +13,15 @@ app.post("/calculate_ride", function (req, res) {
         {
             if (segment.date != null && segment.date != undefined && segment.date instanceof Date && segment.date.toString() !== "Invalid Date") 
             {
-                //overnight
-                if (segment.date.getHours() >= 22 || segment.date.getHours() <= 6) 
+                if (isOverNight(segment)) 
                 {
-                    //not sunday
-                    if (segment.date.getDay() !== 0)  {
+                    if (!isSunday(segment))  {
                         price += segment.distance * 3.90;
-                        //sunday
                     } else {
                         price += segment.distance * 5;
                     }
                 } else {
-                    //sunday
-                    if (segment.date.getDay() === 0)
-                    {
+                    if (isSunday(segment)) {
                         price += segment.distance * 2.9;
                     } else {
                         price += segment.distance * 2.10;
