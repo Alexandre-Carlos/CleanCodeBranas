@@ -16,6 +16,9 @@ test("Deve fazer o cáculo do preço de uma corrida durante o dia", async functi
     expect(output.price).toBe(21);
 });
 
+
+
+/* não são necessários pois foram migrados para o RideCalculator e apenas um teste de integração é suficiente
 test("Deve fazer o cáculo do preço de uma corrida durante a noite", async function (){
     const input = { 
         segments: [
@@ -65,3 +68,4 @@ test("Deve retornar -2 se a data for inválida", async function (){
     const output = response.data;
     expect(output.price).toBe(-2);
 });
+*/
