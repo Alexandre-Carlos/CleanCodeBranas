@@ -1,6 +1,5 @@
 // @ts-nocheck
 import express from 'express';
-import { calculate } from './RideCalculator';
 import Ride from './Ride';
 const app = express();
 app.use(express.json());
