@@ -7,11 +7,12 @@ function isValidLength(cpf: string){
 }
 
 function hasAllDigitsEqual(cpf: string){
-    return cpf.split("").every(c => c === cpf[0]);
+    const [firstDigit] = cpf;
+    return [...cpf].every(digit => digit === firstDigit);
 }
 
 function extractCheckDigit(cpf: string){
-    return cpf.substring(cpf.length-2, cpf.length);
+    return cpf.slice(9);
 }
 
 function calculateDigit(cpf: string, factor: number) {
