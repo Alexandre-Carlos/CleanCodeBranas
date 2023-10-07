@@ -41,7 +41,51 @@ Use case: Cadastrar motorista
 	input: name, email, document e car plate
 	output: driver_id (uuid)
 
-O documento, do tipo cpf, deve ser validado utilizando o algoritmo fornecido, que deve ser refatorado.
-Crie uma API REST para receber as requisições e utilize um banco de dados de sua preferência para persistir os dados.
+Considerações:
 
-Criar os testes de integração (pelo menos)
+1 - O documento, do tipo cpf, deve ser validado utilizando o algoritmo fornecido, que deve ser refatorado.
+2 - Crie uma API REST para receber as requisições e utilize um banco de dados de sua preferência para persistir os dados.
+3 - Criar os testes de integração (pelo menos)
+
+Projeto - Parte 1 (Aula 3)
+
+Calcular corrida (modificar)
+
+url: /calculate_ride
+method: POST
+input: trocar a distance pelas coordenadas de from (lat, log) e to (lat, long)
+output: price (estimado)
+
+Calcular distância a partir das coordenadas
+Solicitar corrida
+url: /request_ride
+method: POST
+input: passenger_id, from (lat, log) e to (lat, long)
+output: ride_id
+
+
+Ao solicitar a corrida o status dela deve ser waiting_driver e o driver_id null. Além disso, deve ser 
+criado o campo request_date com a data atual.
+
+O from e to serve apenas para definir os pontos de origem e distino e orientar o mootorista em realação ao 
+trajeto desejado, conforme a corrida estiver em andamento os segmentos serão adicionados e o preço final 
+pode mudar caso o motorista pegue um caminho diferente, faça mudanças no trajeto ou mude de horário, por 
+exemplo uma corrida iniciada às 22:30 que termina as 23:10 acaba tendo cobranças diferentes por trecho.
+
+Aceitar corrida
+url: /accept_ride
+
+method: POST
+input: ride_id, driver_id
+outut: void
+
+Ao aceitar a corrida, o status dela deve ser accepted e o driver_id definido. Além disso, a accept_date
+deve ser a data atual.
+
+Consultar corrida
+utl: /ride/:id
+
+method: GET 
+input: ride_id
+output: passenger's information, drivers's information, status, waiting_duration
+
