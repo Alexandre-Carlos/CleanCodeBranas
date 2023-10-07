@@ -42,7 +42,6 @@ Use case: Cadastrar motorista
 	output: driver_id (uuid)
 
 O documento, do tipo cpf, deve ser validado utilizando o algoritmo fornecido, que deve ser refatorado.
-
 Crie uma API REST para receber as requisições e utilize um banco de dados de sua preferência para persistir os dados.
 
 Criar os testes de integração (pelo menos)
