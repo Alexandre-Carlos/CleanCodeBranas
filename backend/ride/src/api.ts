@@ -1,21 +1,20 @@
 import express from 'express';
-import Ride from './Ride';
+//import Ride from './Ride';
 import pgp from "pg-promise";
 import crypto from "crypto";
 import { validate } from './CpfValidator';
+import { calculate } from './RideCalculator';
+import CalculateRide from './application/usecase/CalculateRide';
+
 const app = express();
 app.use(express.json());
 
 //Meio de transmissão ou driver
-app.post("/calculate_ride", function (req, res) {
+app.post("/calculate_ride", async function (req, res) {
     try {
-        const ride = new Ride();
-        for (const segment of req.body.segments) {
-            ride.addSegment(segment.distance, new Date(segment.date));
-        }
-        const price = ride.calculate();
-        //fim do negócio
-        res.json({ price });
+        const usecase = new CalculateRide();
+        const output = await usecase.execute(req.body);
+        res.json(output);
     } catch (e: any) {
         res.status(422).send(e.message);
     }

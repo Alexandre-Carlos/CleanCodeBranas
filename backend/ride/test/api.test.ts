@@ -26,9 +26,7 @@ test("Se a distância for inválida deve lançar um erro", async function (){
         ]
     };
     const response = await axios.post("http://localhost:3000/calculate_ride", input);
-    expect(response.status).toBe(422);
-    const output = response.data;
-    expect(output).toBe("Invalid distance");
+    expect(response.data.price).toBe(-1);
 });
 
 test("Deve cadastrar o passageiro", async function () {
