@@ -4,3 +4,8 @@
 4 - npx ts-jest config:init
 5 - npx jest
 6 - npx nodemon src/main.ts
+7 - npx jest test - executar testes
+8 - npx jest test/api.ts ->  executar teste isolado
+9 - npx ts-node src/cli.ts -> executar interação por prompt
+
+
