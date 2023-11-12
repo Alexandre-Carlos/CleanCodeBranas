@@ -7,5 +7,5 @@
 7 - npx jest test - executar testes
 8 - npx jest test/api.ts ->  executar teste isolado
 9 - npx ts-node src/cli.ts -> executar interação por prompt
-
+10 - yarn add sinon @types/sinon -> utilizado para criar um test stub
 

@@ -1,14 +1,11 @@
-import pgp from "pg-promise";
-
+import DriverRepository from "../infra/repository/DriverRepository";
 export default class GetDriver {
     constructor() {
     }
 
     async execute(input: Input): Promise<Output> {
-        const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
-        const [driverData] = await connection.query("select * from cccat12.driver where driver_id = $1",
-        [input.driverId]);
-        await connection.$pool.end();
+        const driverRepository = new DriverRepository();
+        const driverData = await driverRepository.get(input.driverId);
         return {
             driverId: driverData.driver_id,
             name: driverData.name,
