@@ -1,6 +1,4 @@
 import pgp from "pg-promise";
-import crypto from "crypto";
-import { validate } from "../../CpfValidator";
 
 export default class GetDriver {
     constructor() {
