@@ -9,3 +9,6 @@
 9 - npx ts-node src/cli.ts -> executar interação por prompt
 10 - yarn add sinon @types/sinon -> utilizado para criar um test stub
 
+
+criação do banco postgree por linha de comando 
+- psql -d app -f ../../create.sql
