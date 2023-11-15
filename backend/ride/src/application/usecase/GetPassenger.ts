@@ -5,12 +5,13 @@ export default class GetPassenger {
     }
 
     async execute(input: Input): Promise<Output>{
-        const passengerData = await this.passengerRepository.get(input.passengerId);
+        const passenger = await this.passengerRepository.get(input.passengerId);
+        
         return {
-            passengerId: passengerData.passenger_id,
-            name: passengerData.name,
-            email: passengerData.email,
-            document: passengerData.document
+            passengerId: passenger.passengerId,
+            name: passenger.name,
+            email: passenger.email.value,
+            document: passenger.document.value
         };
     }
 }
@@ -19,6 +20,7 @@ type Input = {
     passengerId: string
 }
 
+//DTO - flat
 type Output = {
     passengerId: string,
     name: string,

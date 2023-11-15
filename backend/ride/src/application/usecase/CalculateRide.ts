@@ -1,3 +1,4 @@
+import Ride from "../../Ride";
 import { calculate } from "../../RideCalculator";
 
 export default class CaldulateRide {
@@ -5,7 +6,12 @@ export default class CaldulateRide {
     }
 
     async execute(input: Input): Promise<Output> {
-        const price = calculate(input.segments);
+        //const price = calculate(input.segments);
+        const ride = new Ride();
+        for (const segment of input.segments) {
+            ride.addSegment(segment.distance, new Date(segment.date));
+        }
+        const price = ride.calculate();
         return {price};
     }
 }

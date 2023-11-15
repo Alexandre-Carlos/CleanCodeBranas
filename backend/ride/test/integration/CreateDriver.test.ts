@@ -3,13 +3,14 @@ import DriverRepository from "../../src/application/infra/repository/DriverRepos
 import CreateDriver from "../../src/application/usecase/CreateDriver";
 import GetDriver from "../../src/application/usecase/GetDriver";
 import sinon from "sinon";
+import Driver from "../../src/domain/Driver";
 
 test("Deve cadastrar o motorista", async function () {
     const input = {
         name: "Jhon Doe",
         email: "jhon.doe@gmail.com",
         document: "83432616074",
-        carPlate: "AAA999"
+        carPlate: "AAA9999"
     };
     const usecase = new CreateDriver(new DriverRepository());
     const output = await usecase.execute(input);
@@ -22,13 +23,7 @@ test("Deve obter o motorista", async function () {
         async save (driver: any): Promise<void> {
         },
         async get (driverId: string): Promise<any> {
-            return { 
-                driver_id: "",
-                name: "Jhon Doe",
-                email: "jhon.doe@gmail.com",
-                document: "83432616074",
-                car_plate: "AAA9999"
-            }
+            return Driver.create("Jhon Doe","jhon.doe@gmail.com","83432616074","AAA9999");
         }
     };
     const input = {

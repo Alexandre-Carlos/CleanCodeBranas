@@ -1,6 +1,5 @@
-import crypto from "crypto";
-import { validate } from "../../CpfValidator";
 import DriverRepository from "../repository/DriverRepository";
+import Driver from "../../domain/Driver";
 
 //Application
 export default class CreateDriver {
@@ -9,11 +8,10 @@ export default class CreateDriver {
 
     async execute(input: Input): Promise<Output> {
 
-        const driverId = crypto.randomUUID();
-        if (!validate(input.document)) throw new Error("Invalid cpf");
-        await this.driverRepository.save(Object.assign(input,{ driverId}));
+        const driver = Driver.create(input.name, input.email, input.document, input.carPlate);
+        await this.driverRepository.save(driver);
         return {
-            driverId
+            driverId: driver.driverId
         };
     }
 }

@@ -31,6 +31,7 @@ test("Deve obter o passageiro", async function () {
     };
     const usecase1 = new CreatePassenger(new PassengerRepositoryDataBase());
     const output1 = await usecase1.execute(input);
+
     const usecase2 = new GetPassenger(new PassengerRepositoryDataBase());
     const output2 = await usecase2.execute({ passengerId: output1.passengerId });
 
