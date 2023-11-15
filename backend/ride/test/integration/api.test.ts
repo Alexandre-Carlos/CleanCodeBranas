@@ -3,6 +3,7 @@ axios.defaults.validateStatus = function(){
     return true;
 };
 
+//broad integration tests
 test("Deve fazer o cáculo do preço de uma corrida durante o dia", async function (){
     // given, when, then
     // arrange, act, assert
@@ -26,7 +27,8 @@ test("Se a distância for inválida deve lançar um erro", async function (){
         ]
     };
     const response = await axios.post("http://localhost:3000/calculate_ride", input);
-    expect(response.data.price).toBe(-1);
+    const output = response.data;
+    expect(output).toBe("Invalid distance");
 });
 
 test("Deve cadastrar o passageiro", async function () {

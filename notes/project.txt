@@ -89,3 +89,29 @@ method: GET
 input: ride_id
 output: passenger's information, drivers's information, status, waiting_duration
 
+Iniciar corrida
+
+url: /start_ride
+method: POST
+input: ride_id, position (lat, long), date
+output: void
+
+Atualizar trajeto
+
+url: /add_segment_to_ride
+method: POST
+input: ride_id, position (lat, long), date
+output: void
+
+Finalizar corrida
+url: /end_ride
+method: POST
+input: ride_id, position (lat, long), date
+output: void
+
+Consultar corrida (atualizar)
+
+url: /rides/:id
+method: GET
+input: ride_id
+output: passenger's information, diver's information, status, waiting_duration, distance, price, ride_duration

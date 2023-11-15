@@ -19,6 +19,7 @@ test("Deve cadastrar o motorista", async function () {
 
 //narrow integration test - não tem dependencia do banco
 test("Deve obter o motorista", async function () {
+    //fake test pattern
     const driverRepository: DriverRepository = {
         async save (driver: any): Promise<void> {
         },
