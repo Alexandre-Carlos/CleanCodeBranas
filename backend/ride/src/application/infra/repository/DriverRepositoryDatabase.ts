@@ -1,6 +1,7 @@
 import pgp from "pg-promise";
+import DriverRepository from "../../repository/DriverRepository";
 
-export default class DriverRepository {
+export default class DriverRepositoryDataBase implements DriverRepository {
     async save(driver: any) {
         const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
         await connection.query("insert into cccat12.driver (driver_id, name, email, document, car_plate) values ($1,$2,$3,$4, $5)", 

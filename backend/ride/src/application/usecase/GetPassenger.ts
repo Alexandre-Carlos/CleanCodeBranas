@@ -1,13 +1,11 @@
-import pgp from "pg-promise";
+import PassengerRepository from "../repository/PassengerRepository";
 
 export default class GetPassenger {
-    constructor() {
+    constructor(readonly passengerRepository: PassengerRepository) {
     }
 
     async execute(input: Input): Promise<Output>{
-        const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
-        const [passengerData] = await connection.query("select * from cccat12.passenger where passenger_id = $1", [input.passengerId]);
-        await connection.$pool.end();
+        const passengerData = await this.passengerRepository.get(input.passengerId);
         return {
             passengerId: passengerData.passenger_id,
             name: passengerData.name,
