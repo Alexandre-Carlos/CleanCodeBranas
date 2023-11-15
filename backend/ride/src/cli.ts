@@ -1,3 +1,4 @@
+import PassengerRepositoryDataBase from './application/infra/repository/PassengerRepositoryDatabase';
 import CreatePassenger from './application/usecase/CreatePassenger';
 
 // driver, primary actor, inbound adapter
@@ -7,7 +8,7 @@ process.stdin.on("data", async function(chunk) {
         try {
             const [name, email, document] = command.replace("create-passenger ", "").split(" ");
             console.log(name, email, document);
-           const usecase = new CreatePassenger();
+           const usecase = new CreatePassenger(new PassengerRepositoryDataBase());
            const output = await usecase.execute({ name, email, document});
            console.log(output);
         } catch (e:any) {
